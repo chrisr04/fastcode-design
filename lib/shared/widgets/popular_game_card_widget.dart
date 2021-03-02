@@ -113,7 +113,6 @@ class PopularGameCard extends StatelessWidget {
     );
   }
 
-
 }
 
 class SquarePainter extends CustomPainter {
@@ -128,14 +127,14 @@ class SquarePainter extends CustomPainter {
 
     Path path = Path();
 
-    path.moveTo(0, size.height * 0.3);
-    path.quadraticBezierTo(size.width * 0.06, size.height * 0.14, size.width * 0.35, size.height * 0.22);
-    path.lineTo(size.width * 0.9, size.height * 0.375);
-    path.quadraticBezierTo(size.width *0.985 , size.height * 0.4, size.width, size.height * 0.47);
-    path.lineTo(size.width, size.height * 0.88);
-    path.quadraticBezierTo(size.width *0.96, size.height , size.width *0.8, size.height);
-    path.lineTo(size.width *0.2, size.height);
-    path.quadraticBezierTo(size.width *0.05 , size.height , 0, size.height * 0.88);
+    path.moveTo(0, size.height*0.3);
+    path.quadraticBezierTo(size.width*0.06, size.height*0.14, size.width*0.35, size.height*0.22);
+    path.lineTo(size.width*0.9, size.height*0.375);
+    path.quadraticBezierTo(size.width*0.985 , size.height*0.4, size.width, size.height*0.47);
+    path.lineTo(size.width, size.height*0.88);
+    path.quadraticBezierTo(size.width*0.96, size.height , size.width*0.8, size.height);
+    path.lineTo(size.width*0.2, size.height);
+    path.quadraticBezierTo(size.width*0.05 , size.height , 0, size.height*0.88);
     
     canvas.drawPath(path, paint);
 

@@ -49,7 +49,6 @@ class _HomeViewState extends State<HomeView> {
     return FutureBuilder(
       future: Future.wait([contactsFuture, popularFuture, recommendedFuture]),
       builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
-
         if(snapshot.hasData){
 
           contacts = json.decode(snapshot.data[0]).cast<Map<String, dynamic>>();
@@ -70,11 +69,14 @@ class _HomeViewState extends State<HomeView> {
             ),
           );  
         }else{
-          return Center(
-            child: Loader(
-              size: 35.0,
-              primaryColor: Colors.black,
-              secondaryColor: Colors.white,
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            child: Center(
+              child: Loader(
+                size: 35.0,
+                primaryColor: Colors.black,
+                secondaryColor: Colors.white,
+              ),
             ),
           );
         }

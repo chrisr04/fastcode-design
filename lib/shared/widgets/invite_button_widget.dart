@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 class InviteButton extends StatelessWidget {
+  
   const InviteButton({Key key}) : super(key: key);
 
   @override
@@ -22,11 +23,11 @@ class InviteButton extends StatelessWidget {
             child: CircleAvatar(
               maxRadius: 30.0,
               backgroundColor: Colors.black,
-              child: Icon(Icons.person_add_alt_1_rounded, size: 32.0, color: Colors.white),
+              child: Icon(Icons.person_add_alt_1_rounded, size: 32.0, color: Colors.white)
             ),
           ),
           SizedBox(height: 15.0),
-          Text('Invite', style: TextStyle( color: Colors.black, fontSize: 15.0),)
+          Text('Invite', style: TextStyle( color: Colors.black, fontSize: 15.0))
         ],
       )
     );

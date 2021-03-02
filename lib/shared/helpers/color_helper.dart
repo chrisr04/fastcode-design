@@ -7,7 +7,4 @@ final Map<String,Color> _colors = {
   'red': Colors.red[600]
 };
 
-Color getColor(String colorName){
-
-  return _colors[colorName];
-}
+Color getColor(String colorName) => _colors[colorName];

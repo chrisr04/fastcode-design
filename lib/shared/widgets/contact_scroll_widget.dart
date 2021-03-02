@@ -15,7 +15,7 @@ class ContactScroll extends StatelessWidget {
     return Container(
       height: 110.0,
       child: ListView.builder(
-        itemCount: contacts.length + 1,
+        itemCount: contacts.length+1,
         padding: EdgeInsets.symmetric(horizontal: 5.0),
         scrollDirection: Axis.horizontal,
         physics: BouncingScrollPhysics(),
