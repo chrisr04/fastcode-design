@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fastcode_design/shared/widgets/loader_widget.dart';
 import 'package:fastcode_design/shared/widgets/user_avatar_widget.dart';
 import 'package:fastcode_design/shared/widgets/contact_scroll_widget.dart';
 import 'package:fastcode_design/shared/widgets/popular_game_scroll_widget.dart';
 import 'package:fastcode_design/shared/widgets/recommended_game_grid_widget.dart';
 
 class HomeView extends StatefulWidget {
-
 
   const HomeView({Key key}) : super(key: key);
 
@@ -14,26 +16,69 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+
+  Future<String> contactsFuture;
+  Future<String> popularFuture;
+  Future<String> recommendedFuture;
+  List<Map<String, dynamic>> contacts;
+  List<Map<String, dynamic>> popularGames;
+  List<Map<String, dynamic>> recommendedGames;
+
+  @override
+  void initState() {
+    contactsFuture = DefaultAssetBundle.of(context).loadString("assets/data/contacts.json");
+    popularFuture = DefaultAssetBundle.of(context).loadString("assets/data/popular.json");
+    recommendedFuture = DefaultAssetBundle.of(context).loadString("assets/data/recommended.json");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(bottom: 100.0),
-        child: SafeArea(
-          child: Column(
-            children: [
-              _header(),
-              _contactScroll(),
-              _releaseTitle(),
-              _popularTitle(),
-              _scrollPopularGames(),
-              _recommendedTitle(),
-              _recommendedGrid()
-            ],
-          ),
-        ),
+        child: _init(),
       ),
+    );
+  }
+
+  Widget _init(){
+
+    return FutureBuilder(
+      future: Future.wait([contactsFuture, popularFuture, recommendedFuture]),
+      builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+
+        if(snapshot.hasData){
+
+          contacts = json.decode(snapshot.data[0]).cast<Map<String, dynamic>>();
+          popularGames = json.decode(snapshot.data[1]).cast<Map<String, dynamic>>();
+          recommendedGames = json.decode(snapshot.data[2]).cast<Map<String, dynamic>>();
+
+          return SafeArea(
+            child: Column(
+              children: [
+                _header(),
+                _contactScroll(),
+                _releaseTitle(),
+                _popularTitle(),
+                _scrollPopularGames(),
+                _recommendedTitle(),
+                _recommendedGrid()
+              ],
+            ),
+          );  
+        }else{
+          return Center(
+            child: Loader(
+              size: 35.0,
+              primaryColor: Colors.black,
+              secondaryColor: Colors.white,
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -62,7 +107,9 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _contactScroll(){
-    return ContactScroll();
+    return ContactScroll(
+      contacts: contacts,
+    );
   }
 
   Widget _releaseTitle(){
@@ -88,7 +135,9 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _scrollPopularGames(){
 
-    return PopularGameScroll();
+    return PopularGameScroll(
+      popularGames: popularGames,
+    );
   }
 
   Widget _recommendedTitle(){
@@ -105,7 +154,9 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget _recommendedGrid(){
-    return RecommendedGrid();
+    return RecommendedGrid(
+      recommendedGames: recommendedGames,
+    );
   }
 
 }

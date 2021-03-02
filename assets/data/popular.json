@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Jetpack Joy",
+        "subtitle": "Action Packed",
+        "image": "https://i.redd.it/ijp7kexmshv21.png",
+        "rating": 4.9,
+        "color": "cyan",
+        "favorite": false
+    },
+    {
+        "title": "X Fighter",
+        "subtitle": "Battle Royale",
+        "image": "https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/2015/11/Evil_Bot_Royalty_Free_Game_Art_Featured.png",
+        "rating": 4.5,
+        "color": "yellow",
+        "favorite": true
+    },
+    {
+        "title": "Fruit Ninja",
+        "subtitle": "Real Games",
+        "image": "https://fruitninja.io/wp-content/uploads/2019/11/fruitninja_obj.png",
+        "rating": 4.0,
+        "color": "red",
+        "favorite": false
+    }
+]

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class RecommendedGameCard extends StatelessWidget {
-  const RecommendedGameCard({Key key}) : super(key: key);
+
+  final Map<String, dynamic> recommendedGame;
+
+  const RecommendedGameCard({
+    Key key,
+    @required this.recommendedGame
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +16,7 @@ class RecommendedGameCard extends StatelessWidget {
         color: Colors.black,
         borderRadius: BorderRadius.circular(25.0),
         image: DecorationImage(
-          image: NetworkImage('http://pic.youmobile.org/img/asphalt7-logo.jpg'),
+          image: NetworkImage(recommendedGame['image']),
           fit: BoxFit.cover
         )
       ),
@@ -36,9 +42,9 @@ class RecommendedGameCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Road Fight', overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white, fontSize: 19.0)),
+                Text(recommendedGame['title'], overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white, fontSize: 19.0)),
                 SizedBox(height: 5.0),
-                Text('Shooting Cars', overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white, fontSize: 13.0))
+                Text(recommendedGame['subtitle'], overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white, fontSize: 13.0))
               ]
             ),
           )

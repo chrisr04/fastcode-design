@@ -2,7 +2,13 @@ import 'package:fastcode_design/shared/widgets/recommended_game_card_widget.dart
 import 'package:flutter/material.dart';
 
 class RecommendedGrid extends StatelessWidget {
-  const RecommendedGrid({Key key}) : super(key: key);
+
+  final List<Map<String, dynamic>> recommendedGames;
+  
+  const RecommendedGrid({
+    Key key,
+    @required this.recommendedGames
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,9 @@ class RecommendedGrid extends StatelessWidget {
         scrollDirection: Axis.vertical,
         itemCount: 2,
         itemBuilder: (BuildContext context, int index){
-          return RecommendedGameCard();
+          return RecommendedGameCard(
+            recommendedGame: recommendedGames[index],
+          );
         },
       ),
     );
